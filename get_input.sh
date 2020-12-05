@@ -13,5 +13,5 @@ if [ ! -d "${DIR}" ]; then
 fi;
 
 COOKIE=$(cat cookie)
-curl -vb "session=${COOKIE}" "https://adventofcode.com/2017/day/${DAY}" | w3m -T text/html -dump > "${DIR}/text"
-curl -vb "session=${COOKIE}" "https://adventofcode.com/2017/day/${DAY}/input" -o "${DIR}/input"
+curl -sb "session=${COOKIE}" "https://adventofcode.com/2017/day/${DAY}" | w3m -T text/html -dump > "${DIR}/text"
+curl -sb "session=${COOKIE}" "https://adventofcode.com/2017/day/${DAY}/input" -o "${DIR}/input"
