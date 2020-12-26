@@ -29,10 +29,8 @@ def process(inp):
     pos = 0
     max_pos = len(inp) - 1
     regs = defaultdict(int)
-    regs["a"] = 1
     muls = 0
     while 0 <= pos <= max_pos:
-        print(pos, regs, inp[pos])
         instr, args = inp[pos]
         if instr == Instructions.SET:
             regs[args[0]] = get_value(regs, args[1])
@@ -42,6 +40,7 @@ def process(inp):
             pos += 1
         elif instr == Instructions.MUL:
             regs[args[0]] *= get_value(regs, args[1])
+            muls += 1
             pos += 1
         elif instr == Instructions.JNZ:
             v = get_value(regs, args[0])
@@ -51,7 +50,7 @@ def process(inp):
                 pos += 1
         else:
             raise RuntimeError("Impossible " + str(instr))
-    return regs[h]
+    return muls
 def main():
     inp = read_input()
     s = process(inp)
